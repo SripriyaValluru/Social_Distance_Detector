@@ -1,0 +1,52 @@
+In the fight against the COVID-19, we know that social distancing has proven to be a very effective measure. To ensure social distancing protocol in public places and workplace, we wanted to develop social distancing detection tool that can monitor if people are keeping a safe distance or not.
+
+We are in our way to detect humans and we want to develop this code in python as we both are very familiar with it. As shown in the figure, there are true and false samples here to detect a human. We are now working with this using opencv library in python.  
+
+Yolo V3 is the latest variant of a popular object detection algorithm you only look once(yolo). As it is super fast and nearly as accurate as SDD(single shot detector).
+
+In real time, the ovverview would work as shown in the figure.
+
+
+* Detect humans in the frame with yolov3.
+* Calculates the distance between every human who is detected in the frame.
+
+A. Workflow
+This section includes the necessary steps undertaken to
+compose a framework for monitoring social distancing.
+1. Fine-tune the trained object detection model to identify
+and track the person in a footage.
+2. The trained model is feeded with the surveillance footage.
+The model generates a set of bounding boxes and an ID
+for each identified person.
+3. Each individual is associated with three-dimensional feature space (x, y, d), where (x, y) corresponds to the
+centroid coordinates of the bounding box and d defines
+the depth of the individual as observed from the camera.
+d = ((2 ∗ 3.14 ∗ 180)/(w + h ∗ 360) ∗ 1000 + 3) (16)
+where w is the width of the bounding box and h is the
+height of the bounding box [83].
+4. For the set of bounding boxes, pairwise L2 norm is
+computed as given by the following equation.
+||D||2 =
+vuutXn
+i=1
+(qi − pi)
+2
+(17)
+where in this work n = 3.
+5. The dense matrix of L2 norm is then utilized to assign the
+neighbors for each individual that satisfies the closeness
+sensitivity. With extensive trials the closeness threshold
+is updated dynamically based on the spatial location of
+the person in a given frame ranging between (90, 170)
+pixels.
+6. Any individual that meets the closeness property is
+assigned a neighbour or neighbours forming a group
+represented in a different color coding in contrast to other
+people.
+7. The formation of groups indicates the violation of the
+practice of social distancing which is quantified with help
+of the following:
+– Consider ng as number of groups or clusters identified, and np as total number of people found in close
+proximity.
+– vi = np/ng, where vi
+is the violation index
